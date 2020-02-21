@@ -1,5 +1,6 @@
 class Character {
   float x, y, spinSpeed;
+  float angle = 0;
   
   Character(float x, float y, float spinSpeed) {
     this.x = x;
@@ -7,10 +8,4 @@ class Character {
     this.spinSpeed = spinSpeed;
   }
   
-  void spin() {
-  }
-  
-  void display() {
-    
-  }
 }
