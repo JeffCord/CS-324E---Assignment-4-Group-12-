@@ -3,19 +3,22 @@ class Tails extends Character {
   float size = 100;
 
   float moveSpeedX = width/160;
-  float moveSpeedY = -height/160;
+  float moveSpeedY = -height/320;
   float moveSpeedXOriginal = moveSpeedX;
   float moveSpeedYOriginal = moveSpeedY;
   
-  float horiDisplacement = 0;
+  int horiDisplacement = 0;
   float leftLimit = -20;
   float rightLimit = 20;
 
   boolean rising = true;
   boolean goingLeft = false;
+  
+  WhiteTails whiteTails;
 
   Tails (float x, float y, float spinSpeed) {
     super(x, y, spinSpeed);
+    whiteTails = new WhiteTails(x, y, size);
   }
 
   void move() {
@@ -31,23 +34,15 @@ class Tails extends Character {
     } else if (y >= height - (size / 2)) {
       rising = true;
       moveSpeedY = moveSpeedYOriginal;
+    } else {
+      float distFromMidY = dist(x, y, x, height/2);
+      float smoothY = abs(moveSpeedYOriginal) * ((height/2) - distFromMidY) / (height/2);
+      if (rising) {
+        moveSpeedY = moveSpeedYOriginal - smoothY;
+      } else {
+        moveSpeedY = abs(moveSpeedYOriginal) + smoothY;
+      }
     }
-
-    //float distFromMidY = dist(x, y, x, height/2);
-
-    //if (rising) {
-    //  if (y < midY) {
-    //    moveSpeedY *= 0.95;
-    //  } else if (y > midY) {
-    //    moveSpeedY *= 1.05;
-    //  }
-    //} else {
-    //  if (y < midY) {
-    //    moveSpeedY *= 1.05;
-    //  } else if (y > midY) {
-    //    moveSpeedY *= 0.95;
-    //  }
-    //}
 
     // moves Tails left and right
     if (goingLeft) {
@@ -63,21 +58,33 @@ class Tails extends Character {
         moveSpeedX *= -1;
       }
     }
-
+    
+    // update x and y positions
     x += moveSpeedX;
     y += moveSpeedY;
   }
 
+  // makes Tails rotate in place
   void spin() {
     noStroke();
-    fill(c);
-
+    
+    // white tails rotate in opposite direction as the body
     push();
     translate(x, y);
     rotate(angle);
-    ellipse(0, 0, size - 10, size);
+    whiteTails.display();
     pop();
 
+    push();
+    translate(x, y);
+    rotate(-angle);
+    
+    // yellow body
+    fill(c);
+    ellipse(0, 0, size - 10, size);
+    
+    pop();
+    
     angle += spinSpeed;
   }
 }

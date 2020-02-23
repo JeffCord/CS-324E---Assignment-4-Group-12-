@@ -4,8 +4,6 @@ Tails tails1;
 float midX = width/2;
 float midY = height/2;
 
-
-
 void setup() {
   size(800,800);
   background(210);
