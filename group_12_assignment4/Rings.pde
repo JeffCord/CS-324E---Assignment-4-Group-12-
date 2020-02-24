@@ -13,7 +13,7 @@ class Ring {
 
   void display() {
     strokeWeight(5);
-    stroke(colors, alpha); //stroke(rgb, alpha)
+    stroke(color(0, 255, 0), alpha); //stroke(rgb, alpha)
     ellipse(dx, dy, diameter, diameter);
   }
 

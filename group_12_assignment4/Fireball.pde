@@ -7,7 +7,7 @@ class Fireball extends Shuriken {
   }
   
   void display() {
- 
+     push();
     translate(x,y);
     rotate(radians(r));
     //fill(255,0,0);
@@ -27,6 +27,8 @@ class Fireball extends Shuriken {
     shuriken.updatePixels();
     imageMode(CENTER);
     image(fireball,200,0,100,100);
+    pop();
+    
     r+=5;
     
     
