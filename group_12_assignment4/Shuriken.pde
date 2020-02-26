@@ -1,6 +1,6 @@
 class Shuriken {
   
-  float x,y,linearSpeed, flag, upper, lower;
+  float x,y,linearSpeed, flag, upper, lower, r;
   
   
   Shuriken(float x, float y, float linearSpeed) {
@@ -11,34 +11,25 @@ class Shuriken {
     this.flag = 0;
     this.upper = y - 50;
     this.lower = y + 50;
+    this.r = 1;
     
   }
   
   void display() {
-    //noStroke();
-    //fill(0);
-    shuriken.loadPixels();
-    for (int x = 0; x < shuriken.width; x++) {
-      for (int y = 0; y < shuriken.height; y++) {
-        int index = x + y*shuriken.width;
-        color c = shuriken.pixels[index];
-        if (red(c) > 200) { 
-          shuriken.pixels[index] = color(0,0,0,1);
-        }
-      }
-    }
-          
-    shuriken.updatePixels();
+    
+    push();
+    translate(x,y);
+    rotate(radians(-r));
+    translate(-x,-y);
     imageMode(CENTER);
-    image(shuriken,x,y,100,100);
-
-    
-    
-    //triangle(x - 10, y + 10, x + 10, y + 10, x, y - 10);
-    //triangle(x - 10, y - 5, x + 10, y - 5, x, y + 15);
-  }
+    image(shuriken,x,y,50,50);
+    pop();
+    r+=15;
   
+  }
+
   void upDownMovement() {
+    
     if (this.flag == 0 && y != lower) {
       y += linearSpeed; }
     if (this.flag == 1 && y != upper) {
@@ -50,4 +41,34 @@ class Shuriken {
     
     }
     
-  }
+  void side2Side() {
+    
+    if (linearSpeed > 0) {
+      if (this.flag == 0 && x != width) {
+        x -= linearSpeed; }
+      if (this.flag == 1 && x != 0) {
+        x += linearSpeed; }
+      if (x == width) {
+        this.flag = 0;
+        x -= linearSpeed;}
+      if (x == 0) {
+        this.flag = 1;
+        x += linearSpeed;}
+    }
+    
+    if (linearSpeed < 0) {
+      if (this.flag == 0 && x != width) {
+        x -= linearSpeed; }
+      if (this.flag == 1 && x != 0) {
+        x += linearSpeed; }
+      if (x == width) {
+        this.flag = 1;
+        x += linearSpeed;}
+      if (x == 0) {
+        this.flag = 0;
+        x -= linearSpeed;}
+    }
+      
+  }              
+}
+    
