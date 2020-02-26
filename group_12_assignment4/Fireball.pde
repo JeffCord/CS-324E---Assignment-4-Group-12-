@@ -1,9 +1,12 @@
 class Fireball extends Shuriken {
   
-  float r = 1;
+  float r = 1,tranx,trany;
 
-  Fireball(float x, float y, float linearSpeed) {
+  Fireball(float x, float y, float linearSpeed, float tranx, float trany) {
     super(x,y,linearSpeed);
+    this.tranx = tranx;
+    this.trany = trany;
+
   }
   
   void display() {
@@ -12,7 +15,7 @@ class Fireball extends Shuriken {
     translate(x,y);
     rotate(radians(r));
     imageMode(CENTER);
-    image(fireball,75,0,30,30);
+    image(fireball,tranx,trany,30,30);
     pop();
     r+=5;
     

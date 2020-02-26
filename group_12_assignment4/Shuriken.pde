@@ -24,7 +24,9 @@ class Shuriken {
     imageMode(CENTER);
     image(shuriken,x,y,50,50);
     pop();
-    r+=5;}
+    r+=15;
+  
+  }
 
   void upDownMovement() {
     
@@ -41,16 +43,31 @@ class Shuriken {
     
   void side2Side() {
     
-    if (this.flag == 0 && x != width) {
-      x -= linearSpeed; }
-    if (this.flag == 1 && x != 0) {
-      x += linearSpeed; }
-    if (x == width) {
-      this.flag = 0;
-      x -= linearSpeed;}
-    if (x == 0) {
-      this.flag = 1;
-      x += linearSpeed;}   
+    if (linearSpeed > 0) {
+      if (this.flag == 0 && x != width) {
+        x -= linearSpeed; }
+      if (this.flag == 1 && x != 0) {
+        x += linearSpeed; }
+      if (x == width) {
+        this.flag = 0;
+        x -= linearSpeed;}
+      if (x == 0) {
+        this.flag = 1;
+        x += linearSpeed;}
+    }
+    
+    if (linearSpeed < 0) {
+      if (this.flag == 0 && x != width) {
+        x -= linearSpeed; }
+      if (this.flag == 1 && x != 0) {
+        x += linearSpeed; }
+      if (x == width) {
+        this.flag = 1;
+        x += linearSpeed;}
+      if (x == 0) {
+        this.flag = 0;
+        x -= linearSpeed;}
+    }
       
   }              
 }
