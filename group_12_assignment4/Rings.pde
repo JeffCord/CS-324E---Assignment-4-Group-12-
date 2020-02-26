@@ -13,7 +13,8 @@ class Ring {
 
   void display() {
     strokeWeight(5);
-    stroke(color(0, 255, 0), alpha); //stroke(rgb, alpha)
+    noFill();
+    stroke(colors, alpha); //stroke(rgb, alpha)
     ellipse(dx, dy, diameter, diameter);
   }
 
@@ -22,8 +23,7 @@ class Ring {
   void fadeIn() {
     //(251, 208, 0)
     if (alpha < 255) {
-      delay(5);
-      alpha++;
+      alpha ++;
     }
   }
 
