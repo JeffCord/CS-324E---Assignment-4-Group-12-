@@ -5,7 +5,7 @@ AudioPlayer bgm, soundEffect ; //create 2 objects
 
 float midX = width/2;
 float midY = height/2;
-PImage shuriken, fireball;
+PImage shuriken, fireball, backgroundImage;
 
 Sonic sonic1;
 Tails tails1;
@@ -48,8 +48,10 @@ void setup() {
   minim = new Minim(this) ;
   bgm = minim.loadFile("Doraemon_fc_Soundtrack.mp3") ; 
   soundEffect = minim.loadFile("sonic_ring_sound_effect.mp3") ;
-  
   bgm.play() ;//start when program runs
+  
+  backgroundImage = loadImage("backgrounimage.png");
+  backgroundImage.resize(width + 200, height + 100);
   shuriken = loadImage("shuriken.png");
   fireball = loadImage("fireball.png");
   sonic1 = new Sonic(width * .9, height / 2, 0.5, 0.02);
@@ -61,8 +63,9 @@ void setup() {
   }
 
   //create rings
-  for (int i = 0; i < numRings; i++)
+  for (int i = 0; i < numRings; i++){
     rings[i] = new Ring(dx, dy, diameter);
+  }
 }
 
 
@@ -73,9 +76,7 @@ void stop() {
 
 
 void draw() {
-  background(210);
-  Ring r1 = new Ring(20, 20, 20);
-  r1.display();
+  image(backgroundImage, -100, -20);
 
   // Shuriken #1
   s1.display();
@@ -127,6 +128,7 @@ void draw() {
     rings[ringIndex].disappear();
   } else {
     rings[ringIndex].fadeIn();
+
   }
   
   if (frameCount % 20 == 0) {
