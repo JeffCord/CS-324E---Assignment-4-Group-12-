@@ -1,0 +1,26 @@
+Description for Assignment 4
+
+****************************************************ANIMATION****************************************************
+
+	The intended animation for this assignment was for Sonic to go in a circle and interact 
+with the ring objects making them disappear. Unfortunately, using translate and rotate
+do not update the x and y coordinates of the object being manipulated. This led to troubles
+recognizing the proximity of Sonic to the rings.
+
+	In the final animation, Sonic is a subclass of the Character class and spins in a circle around a loop.
+The spikes surrounding Sonic spin around the object to give the appearance that Sonic
+is going fast. Similarly, as Tails moves up and down the screen, WhiteTail objects spin around
+him and follow his movement. The Shuriken class has shurikens bounce from the left to the right side of the
+screen while spinning around. Four fireballs were created from the Fireball class to revolve around the shurikens.
+The Ring class creates a Ring object that can disappear and reappear over a certain period of time. The Item class
+was not used but remained there in case it was needed.
+
+************************************************INDIVIDUAL WORK**************************************************
+
+Jeff Cordes - Jeff was responsible for the Character, Sonic, Spikes, Tails and WhiteTail classes.
+
+Jenny Jie - Jenny was responsible for the Ring and Rain classs and implemented the background music.
+
+Declan Burke - Declan was responsible for the Shuriken and the Fireball classes.
+
+Each group member was responsible for implementing their classes into the main code.
